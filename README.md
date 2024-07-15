@@ -16,12 +16,25 @@
 <p align="center">
     <!-- <img src="assets/matches.jpg" alt="example" width=80%>
     <br> -->
-    <em>The Keypt2Subpx module learns multi-view consistent subpixel-adjustment for <b>any</b> keypoints, given the prospective keypoint correspondence between two images.</em>
+    <img src="assets/visualization.png" width=60% alt="visualization">
+    <br>
+    <em>The Keypt2Subpx module learns multi-view consistent sub-pixel adjustment for <b>any</b> keypoints, given the prospective keypoint correspondence between two images.</em>
 </p>
+
+## What Does Keypt2Subpx Do?
+<!-- ![visualization]() -->
+<p align="center">
+    <!-- <img src="assets/matches.jpg" alt="example" width=80%>
+    <br> -->
+    <img src="assets/pipeline.png" width=95% alt="visualization">
+</p>
+
+The Keypt2Subpx module act as an add-on on top of any classic detect-and-match approaches that find two-view sparse correspondence. By performing sub-pixel adjustment to the keypoints, the proposed lightweight module makes not only keypoints but also two-view end tasks (e.g. relative pose estimation, fundamental matrix estimation, etc.) more accurate, adding only insignificant amount of inference time.
 
 ## How to Use Keypt2Subpx?
 <!-- TODO: Add Demo -->
 <!-- [demos](demo) -->
+Inference of Keypt2Subpx module does not require any extra depedencies except PyTorch. The placeholders (`keypt`, `img`, `desc`, and `score`) in the code snippet given below can be replaced with your own data.
 ```python
 import torch
 
@@ -46,7 +59,30 @@ refined_keypt1, refined_keypt2 = keypt2subpx(keypt1, keypt2, img1, img2, desc1, 
 
 ## Preparation
 ### Environment
+Although Keypt2Subpx module only relies on PyTorch dependency, keypoint detector, description and matching involved for training and evaluation requires extra dependencies. One can follow below procedure to install the necessary packages at a conda environment. First, clone this repository and create a conda environment.
+```bash
+git clone --recurse-submodules https://github.com/KimSinjeong/keypt2subpx.git
+cd keypt2subpx
 
+conda create -n keypt2subpx python=3.11
+conda activate keypt2subpx
+```
+
+Then install PyTorch and other dependencies.
+```bash
+# Install PyTorch
+pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cpu
+# or below to use GPU
+# pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu121
+
+# Install Glue Factory (https://github.com/cvg/glue-factory)
+cd submodules/glue_factory
+python -m pip install -e .
+cd ../../
+
+# Install pygcransac
+pip install pygcransac
+```
 
 ### Keypoint Extraction & Matching
 <!-- TODO: Add training -->
@@ -58,7 +94,7 @@ python dataprocess/splg.py -v train
 python dataprocess/splg.py -v val # MegaDepth-1500 benchmark
 python dataprocess/splg.py -v test
 ```
-**Note**: test set will take 1~2TB (depending on which detector / descriptor / matcher you use).
+**Note**: This will automatically download the MegaDepth dataset through the [Glue Factory](https://github.com/cvg/glue-factory) library, which will take about 450GB of storage. Keypoint extraction and matching on test set (the last line) will take extra 1~2TB (depending on which detector / descriptor / matcher you use).
 
 ## Usage
 ### Training
