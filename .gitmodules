@@ -1,0 +1,3 @@
+[submodule "submodules/glue_factory"]
+	path = submodules/glue_factory
+	url = https://github.com/cvg/glue-factory.git
