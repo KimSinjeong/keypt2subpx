@@ -8,7 +8,8 @@
     <a href="https://scholar.google.com/citations?user=U9-D8DYAAAAJ">Dániel Béla Baráth</a>
   </p>
   <h2 align="center"><p>
-    <a href="TODO" align="center">Paper (TODO)</a> | 
+    <a href="https://arxiv.org/abs/2407.11668" align="center">Arxiv</a> | 
+    <a href="TODO" align="center">ECCV (TODO)</a> | 
     <a href="TODO" align="center">Project Page (TODO)</a>
   </p></h2>
   <div align="center"></div>
