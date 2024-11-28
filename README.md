@@ -9,7 +9,7 @@
   </p>
   <h2 align="center"><p>
     <a href="https://arxiv.org/abs/2407.11668" align="center">Arxiv</a> | 
-    <a href="TODO" align="center">ECCV (TODO)</a> | 
+    <a href="https://link.springer.com/chapter/10.1007/978-3-031-73229-4_24" align="center">ECCV</a> | 
     <a href="TODO" align="center">Project Page (TODO)</a>
   </p></h2>
   <div align="center"></div>
